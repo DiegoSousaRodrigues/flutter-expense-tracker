@@ -1,0 +1,10 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+
+  rules:
+    require_trailing_commas: true
+    lines_longer_than_80_chars: false
+
+formatter:
+  trailing_commas: preserve
