@@ -1,11 +1,11 @@
-import 'package:expense_tracker/expense.dart' as ct;
+import 'package:expense_tracker/expense.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class NewExpense extends StatefulWidget {
   const NewExpense({super.key, required this.onAddExpense});
 
-  final Function(ct.Expense expense) onAddExpense;
+  final Function(Expense expense) onAddExpense;
 
   @override
   State<NewExpense> createState() => _NewExpenseState();
@@ -16,7 +16,7 @@ class _NewExpenseState extends State<NewExpense> {
   final _amountController = TextEditingController();
   final formatter = DateFormat.yMd();
   DateTime? _selectedDate;
-  ct.Category _selectedCategory = ct.Category.leisure;
+  Category _selectedCategory = Category.leisure;
 
   void _presentDatePicker() async {
     final DateTime now = DateTime.now();
@@ -49,7 +49,7 @@ class _NewExpenseState extends State<NewExpense> {
     }
 
     widget.onAddExpense(
-      ct.Expense(
+      Expense(
         title: _titleController.text,
         amount: enteredNumber,
         date: _selectedDate!,
@@ -117,9 +117,10 @@ class _NewExpenseState extends State<NewExpense> {
             children: [
               DropdownButton(
                 value: _selectedCategory,
-                items: ct.Category.values
+                items: Category.values
                     .map(
                       (c) => DropdownMenuItem(
+                        value: c,
                         child: Text(
                           c.name.toUpperCase(),
                         ),
